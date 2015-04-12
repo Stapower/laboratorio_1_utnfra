@@ -1,6 +1,9 @@
-# laboratorio_1_utnfra
+# laboratorio_1_utnfra  ![fra](http://www.sistemas-utnfra.com.ar/img/logo-utn.png)
 Ejercicios Resueltos del Laboratorio I - 1G - 2015 - Cuatrimestre 1 
 
+
+#Fechas de Examen:
+![examen](https://github.com/davilamr/laboratorio_1_utnfra/blob/master/fechas.png)
 
 #Fechas de Entrega:
 
