@@ -1,4 +1,4 @@
-# laboratorio_1_utnfra  ![fra](http://www.sistemas-utnfra.com.ar/img/logo-utn.png)
+![fra](http://www.sistemas-utnfra.com.ar/img/logo-utn.png)  #Laboratorio I 
 Ejercicios Resueltos del Laboratorio I - 1G - 2015 - Cuatrimestre 1 
 
 
