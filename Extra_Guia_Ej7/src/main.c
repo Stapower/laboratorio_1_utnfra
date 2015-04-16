@@ -1,10 +1,10 @@
 /*
  ============================================================================
- Name        : Extra_Guia_Ej5.c
+ Name        : Extra_Guia_Ej7.c
  Author      : 
  Version     :
  Copyright   : GLP
- Description : Contar las palabras de un txt no mas de 100 distintas
+ Description : Leer un archivo y dejar su contenido en un char array
  ============================================================================
  */
 #define PAUSE()  do { printf("\n\n-PAUSE- file: %s line:%d\n", __FILE__, __LINE__); getchar(); } while (0)
@@ -19,8 +19,6 @@
 int main(void)
 {
 
-  //palabra palabras[ARRAY_SIZE];
-  //char cadena[50];
   char contenidoArchivo[1024];
 
   leerArchivo("/home/mauricio/git/laboratorio_1_utnfra/Extra_Guia_Ej7/src/archivo.txt",contenidoArchivo);
