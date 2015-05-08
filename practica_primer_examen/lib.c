@@ -4,7 +4,7 @@
  *  Created on: 24/4/2015
  *      Author: root
  */
-
+#include <hiredis/hiredis.h>
 #include "lib.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -64,6 +64,5 @@ int existe_legajo(int pregunta_legajo, int legajo[], int limite)
 
 
 }
-
 
 

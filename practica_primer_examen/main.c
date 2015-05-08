@@ -86,8 +86,13 @@ int main(void)
     		listar(LIMITE_EMPLEADO, legajo,nombre,apellido,salario,fecha,sector);
     		break;
 
-    	}
 
+    	case '5':
+    		printf("\nGUARDADO\n");
+
+    		break;
+
+    	}
 
     }
 
