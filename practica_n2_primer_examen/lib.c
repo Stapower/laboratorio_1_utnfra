@@ -69,4 +69,54 @@ void ordenarProductos(int cantidad,Producto productos[])
 
 }
 
+/*leer lista desde archivo*/
+void leerListaDesdeArchivo(char* nombreArchivo, Producto* productos)
+{
+
+
+	FILE* f = fopen(nombreArchivo,"rb");
+
+	Producto auxProducto;
+
+	int indice=0;
+
+
+	if (f!=NULL)
+	{
+		while(!feof(f))
+		{
+			fread(&auxProducto,sizeof(Producto),1,f);
+			productos[indice] = auxProducto;
+			indice++;
+		}
+	}
+	else
+	{
+		printf( "Error al abrir el archivo \n" );
+
+	}
+	fclose(f);
+}
+
+/*leer lista desde archivo*/
+void guardarListaEnArchivo(char *nombreArchivo, Producto* p_productos,int cantidad)
+{
+	FILE* f=fopen(nombreArchivo,"wb");
+	int indice=0;
+
+	if (f!=NULL)
+	{
+		for(indice=0;indice<cantidad;indice++)
+		{
+			fwrite(&p_productos[indice],sizeof(Producto),1,f);
+		}
+	}
+	else
+	{
+		printf( "Error al abrir el archivo \n" );
+
+	}
+	fclose(f);
+}
+
 

@@ -19,9 +19,9 @@ int main(void){
 	Producto productos[10];
 
 	inicializarProductos(CANTIDAD,productos);
-	mostrarProductos(CANTIDAD,productos);
+	//mostrarProductos(CANTIDAD,productos);
 
-
+/*
 	productos[0]= new_Producto(13,"Ladrillo",22.12,345);
 	productos[1]= new_Producto(10,"Arandela",22.12,876);
 	productos[2]= new_Producto(90,"Tornillo",22.12,21);
@@ -30,12 +30,19 @@ int main(void){
 	productos[5]= new_Producto(10,"Arandela",22.12,100);
 	productos[6]= new_Producto(90,"Tornillo",22.12,34);
 	productos[7]= new_Producto(1,"BBB",22.12,100);
+*/
+	leerListaDesdeArchivo("datos.dat",productos);
+	//mostrarProductos(CANTIDAD,productos);
 
-	mostrarProductos(CANTIDAD,productos);
+
+	productos[8]= new_Producto(1,"NUEVO",22.12,100);
+	guardarListaEnArchivo("datos.dat",productos,8);
+
+	//leerListaDesdeArchivo("datos.dat",productos);
 
 	printf("\nORDENO\n");
 	ordenarProductos(CANTIDAD,productos);
-
+	printf("\nMUESTRO\n");
 
 	mostrarProductos(CANTIDAD,productos);
 
