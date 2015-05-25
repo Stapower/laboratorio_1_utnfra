@@ -21,6 +21,7 @@ typedef struct
 
 	void (* append)(); // funcion append
 	void* (* get)(); // funcion get
+	void* (* pop)(); // funcion pop
 }list;
 
 
@@ -28,7 +29,8 @@ list* new_List(void);
 void append(list* p_list, void* element);
 void* get(list* p_list,int index);
 int resizeUp(list* p_list);
-
+void* pop(list* p_list,int index);
+void compact(list* p_list);
 
 
 

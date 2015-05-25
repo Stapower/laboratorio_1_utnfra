@@ -13,10 +13,11 @@ list* new_List(void)
 
 	auxList->append = append; // referencio a la funcion append
 	auxList->get = get; // referencio a la funcion get
+	auxList->pop = pop; // referencio a la funcion get
+
 	return auxList;
 
 }
-
 
 void* get(list* p_list,int index)
 {
@@ -36,6 +37,41 @@ void append(list* p_list, void* element)
 	p_list->p_elements[p_list->size] = element;
 	p_list->size++;
 }
+
+void* pop(list* p_list,int index)
+{
+	void* returnAux;
+	if (p_list->size > index)
+	{
+		returnAux = p_list->p_elements[index];
+		p_list->p_elements[index] = NULL;
+		compact(p_list);
+		return returnAux;
+	}
+	return NULL;
+}
+
+void compact(list* p_list)
+{
+	void* pAux;
+	int i,j;
+
+	for(i=0;i<p_list->size - 1;i++)
+	{
+		for(j=i;j<p_list->size;j++)
+		{
+			if (p_list->p_elements[i] == NULL && p_list->p_elements[j] != NULL)
+				{
+					p_list->p_elements[i] = p_list->p_elements[j];
+					p_list->p_elements[j] = NULL;
+
+				}
+		}
+	}
+	p_list->size--;
+
+}
+
 
 int resizeUp(list *p_list)
 {

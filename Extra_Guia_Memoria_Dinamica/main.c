@@ -16,21 +16,34 @@
 
 
 int main(void){
-
+	int i;
+	char auxStr[20];
 	list* pList;
 	pList = new_List();
-	pList->append(pList,new_Producto(13,"Ladrillo 1",22.12,345));
-	pList->append(pList,new_Producto(13,"Ladrillo 2",22.12,345));
-	printf("SIZE: %4d\tRESERVED: %4d\n",pList->size,pList->reservedSize);
+
+	for(i=0;i<30;i++)
+	{
+		sprintf(auxStr,"Elemento %d",i);
+		pList->append(pList,new_Producto(13,auxStr,22.12,345));
+		printf("SIZE: %4d\tRESERVED: %4d\n",pList->size,pList->reservedSize);
+	}
+
 
 	Producto* auxProducto;
 
-	auxProducto = pList->get(pList,1);
-	printf("--- %s\n",auxProducto->descripcion);
+	for(i=0;i<pList->size;i++)
+	{
+		auxProducto = pList->get(pList,i);
+		printf("--- %s\n",auxProducto->descripcion);
+	}
 
-	auxProducto = pList->get(pList,0);
-	printf("--- %s\n",auxProducto->descripcion);
+	auxProducto = pList->pop(pList,15);
 
+	for(i=0;i < pList->size;i++)
+	{
+			auxProducto = pList->get(pList,i);
+			printf("R --- %s\n",auxProducto->descripcion);
+	}
 
 
 	Producto* productos[10]; //declaro un array de punteros a Producto
