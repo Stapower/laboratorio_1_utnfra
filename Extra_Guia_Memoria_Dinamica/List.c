@@ -1,8 +1,11 @@
 #include "List.h"
-
 #include <stdio.h>
 
-
+// Funciones privadas
+void contract(List* p_List, int index);
+void expand(List* p_List, int index);
+int resizeUp(List *p_List);
+// Funciones privadas
 
 List* newList(void)
 {
@@ -102,7 +105,6 @@ void expand(List* p_List, int index)
 	p_List->pElements[index] = NULL;
 
 }
-
 
 int resizeUp(List *p_List)
 {
