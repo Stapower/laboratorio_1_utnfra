@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <string.h>
 
-Producto* new_Producto(int codigo,char descripcion[],float importe,int cantidad)
+Producto* newProducto(int codigo,char descripcion[],float importe,int cantidad)
 {
 	Producto* p_auxiliar; // declaro un puntero del tipo producto
 

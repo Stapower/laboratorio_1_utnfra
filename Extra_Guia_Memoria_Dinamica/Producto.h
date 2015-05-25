@@ -17,7 +17,7 @@ typedef struct
 }Producto;
 
 
-Producto* new_Producto(int codigo,char descripcion[],float importe,int cantidad);
+Producto* newProducto(int codigo,char descripcion[],float importe,int cantidad);
 
 
 #endif /* PRODUCTO_H_ */

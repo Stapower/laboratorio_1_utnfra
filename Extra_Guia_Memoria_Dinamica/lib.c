@@ -1,22 +1,22 @@
 #include "lib.h"
-#include "Lista.h"
 #include <string.h>
 #include <stdio.h>
+#include "List.h"
 
 
-void mostrarProductos(list* pList)
+void mostrarProductos(List* pList)
 {
 	int i;
 	Producto* auxProducto;
 	for(i=0;i < pList->size;i++)
 	{
 		auxProducto = pList->get(pList,i);
-		printf("CANTIDAD:%5d - COD:%5d - DESC:%10s\n",auxProducto->cantidad,auxProducto->codigo,auxProducto->descripcion);
+		printf("ID:%d - CANTIDAD:%5d - COD:%5d - DESC:%10s\n",i,auxProducto->cantidad,auxProducto->codigo,auxProducto->descripcion);
 	}
 
 }
 
-void ordenarProductos(list* pList)
+void ordenarProductos(List* pList)
 {
 	int i,j;
 	Producto* elemento1;
@@ -40,8 +40,8 @@ void ordenarProductos(list* pList)
 
 }
 
-/*leer lista desde archivo*/
-void leerListaDesdeArchivo(char* nombreArchivo, list* pList)
+/*leer Lista desde archivo*/
+void leerListaDesdeArchivo(char* nombreArchivo, List* pList)
 {
 
 
@@ -53,7 +53,7 @@ void leerListaDesdeArchivo(char* nombreArchivo, list* pList)
 		while(!feof(f))
 		{
 			fread(&auxProducto,sizeof(Producto),1,f);
-			pList->append(pList,new_Producto(auxProducto.codigo,auxProducto.descripcion,auxProducto.importe,auxProducto.cantidad));
+			pList->append(pList,newProducto(auxProducto.codigo,auxProducto.descripcion,auxProducto.importe,auxProducto.cantidad));
 
 		}
 	}
@@ -65,8 +65,8 @@ void leerListaDesdeArchivo(char* nombreArchivo, list* pList)
 	fclose(f);
 }
 
-/*leer lista desde archivo*/
-void guardarListaEnArchivo(char* nombreArchivo, list* pList)
+/*leer Lista desde archivo*/
+void guardarListaEnArchivo(char* nombreArchivo, List* pList)
 {
 	FILE* f=fopen(nombreArchivo,"wb");
 	int indice=0;

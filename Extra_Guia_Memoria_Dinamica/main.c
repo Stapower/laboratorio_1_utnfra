@@ -13,36 +13,42 @@
 #include <string.h>
 #include "lib.h"
 #include "Producto.h"
-#include "Lista.h"
+#include "List.h"
 
 
 int main(void){
 	int i;
 	char auxStr[20];
-	list* pList;
+	List* pList;
 	Producto* auxProducto;
 
 
-	pList = new_List();
+	pList = newList();
 
 	for(i=0;i<30;i++)
 	{
 		sprintf(auxStr,"Elemento %d",i);
-		pList->append(pList,new_Producto(13,auxStr,22.12,345));
+		pList->append(pList,newProducto(13,auxStr,22.12,345));
 		printf("SIZE: %4d\tRESERVED: %4d\n",pList->size,pList->reservedSize);
 	}
 
-	pList->put(pList,11,new_Producto(13,"Prueba put",22.12,345));
-
-
+	pList->push(pList,10,newProducto(13,"Prueba push",22.12,345));
+	pList->push(pList,12,newProducto(13,"Prueba push",22.12,345));
+	pList->push(pList,14,newProducto(13,"Prueba push",22.12,345));
 	mostrarProductos(pList);
 
-	auxProducto = pList->pop(pList,15);
 
+	auxProducto = pList->pop(pList,10);
+	auxProducto = pList->pop(pList,11);
+	auxProducto = pList->pop(pList,12);
+	mostrarProductos(pList);
+
+	//auxProducto = pList->pop(pList,15);
+	/*
 	printf("\n--- Resultado ---\n");
 	mostrarProductos(pList);
 
-/*
+
 	leerListaDesdeArchivo("datos.dat",pList);
 
 	guardarListaEnArchivo("datos.dat",pList);
