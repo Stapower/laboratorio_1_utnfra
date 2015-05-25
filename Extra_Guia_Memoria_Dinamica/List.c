@@ -58,8 +58,6 @@ void* pop(List* p_List,int index)
 	if (p_List->size > index)
 	{
 		returnAux = p_List->pElements[index];
-		p_List->pElements[index] = NULL;
-		//compact(p_List); // Compacto la Lista
 		contract(p_List, index);
 		p_List->size--;
 		return returnAux;
