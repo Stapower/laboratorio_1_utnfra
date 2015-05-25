@@ -1,49 +1,39 @@
 #include "lib.h"
+#include "Lista.h"
 #include <string.h>
 #include <stdio.h>
 
 
-void mostrarProductos(int cantidad,Producto* productos[])
+void mostrarProductos(list* pList)
 {
 	int i;
-	for(i=0;i<cantidad;i++)
+	Producto* auxProducto;
+	for(i=0;i < pList->size;i++)
 	{
-		if(productos[i]->codigo>0)
-		{
-			printf("CANTIDAD:%5d - COD:%5d - DESC:%10s\n",productos[i]->cantidad,productos[i]->codigo,productos[i]->descripcion);
-		}
+		auxProducto = pList->get(pList,i);
+		printf("CANTIDAD:%5d - COD:%5d - DESC:%10s\n",auxProducto->cantidad,auxProducto->codigo,auxProducto->descripcion);
 	}
 
 }
 
-void ordenarProductos(int cantidad,Producto* productos[])
+void ordenarProductos(list* pList)
 {
 	int i,j;
-	Producto* auxiliar;
+	Producto* elemento1;
+	Producto* elemento2;
 
-	for(i=0;i < cantidad - 1;i++)
+	for(i=0;i < pList->size - 1;i++)
 	{
-		for(j=i+1;j < cantidad;j++)
+		for(j=i+1;j < pList->size;j++)
 		{
+			elemento1 = pList->get(pList,i);
+			elemento2 = pList->get(pList,j);
 
-			if(productos[i]->cantidad > productos[j]->cantidad)
+			if(elemento1->cantidad > elemento2->cantidad)
 			{
-				auxiliar = productos[i];
-				productos[i]=productos[j];
-				productos[j]=auxiliar;
+				pList->put(pList,i,elemento2);
+				pList->put(pList,j,elemento1);
 			}
-			else if(productos[i]->cantidad == productos[j]->cantidad)
-			{
-
-				if(strcmp(productos[i]->descripcion, productos[j]->descripcion) == -1)
-				{
-					auxiliar = productos[i];
-					productos[i]=productos[j];
-					productos[j]=auxiliar;
-				}
-
-			}
-
 
 		}
 	}
@@ -51,23 +41,20 @@ void ordenarProductos(int cantidad,Producto* productos[])
 }
 
 /*leer lista desde archivo*/
-void leerListaDesdeArchivo(char* nombreArchivo, Producto* productos[])
+void leerListaDesdeArchivo(char* nombreArchivo, list* pList)
 {
 
 
 	FILE* f = fopen(nombreArchivo,"rb");
 	Producto auxProducto;
 
-	int indice=0;
-
-
 	if (f!=NULL)
 	{
 		while(!feof(f))
 		{
 			fread(&auxProducto,sizeof(Producto),1,f);
-		 	productos[indice] = new_Producto(auxProducto.codigo,auxProducto.descripcion,auxProducto.importe,auxProducto.cantidad);
-			indice++;
+			pList->append(pList,new_Producto(auxProducto.codigo,auxProducto.descripcion,auxProducto.importe,auxProducto.cantidad));
+
 		}
 	}
 	else
@@ -79,16 +66,16 @@ void leerListaDesdeArchivo(char* nombreArchivo, Producto* productos[])
 }
 
 /*leer lista desde archivo*/
-void guardarListaEnArchivo(char *nombreArchivo, Producto* p_productos[],int cantidad)
+void guardarListaEnArchivo(char* nombreArchivo, list* pList)
 {
 	FILE* f=fopen(nombreArchivo,"wb");
 	int indice=0;
 
 	if (f!=NULL)
 	{
-		for(indice=0;indice<cantidad;indice++)
+		for(indice=0;indice<pList->size ;indice++)
 		{
-			fwrite(p_productos[indice],sizeof(Producto),1,f);
+			fwrite(pList->get(pList,indice),sizeof(Producto),1,f);
 		}
 	}
 	else

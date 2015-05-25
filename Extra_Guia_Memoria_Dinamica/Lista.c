@@ -1,5 +1,6 @@
-#include "ListaProductos.h"
+#include "Lista.h"
 #include <stdio.h>
+
 
 
 list* new_List(void)
@@ -13,8 +14,8 @@ list* new_List(void)
 
 	auxList->append = append; // referencio a la funcion append
 	auxList->get = get; // referencio a la funcion get
-	auxList->pop = pop; // referencio a la funcion get
-
+	auxList->pop = pop; // referencio a la funcion pop
+	auxList->put = put;
 	return auxList;
 
 }
@@ -45,15 +46,26 @@ void* pop(list* p_list,int index)
 	{
 		returnAux = p_list->p_elements[index];
 		p_list->p_elements[index] = NULL;
-		compact(p_list);
+		compact(p_list); // Compacto la lista
 		return returnAux;
 	}
 	return NULL;
 }
 
+int put(list* p_list,int index,void* element)
+{
+
+	if (p_list->size > index)
+	{
+		p_list->p_elements[index]=element;
+		return 1;
+	}
+	return 0;
+}
+
+
 void compact(list* p_list)
 {
-	void* pAux;
 	int i,j;
 
 	for(i=0;i<p_list->size - 1;i++)

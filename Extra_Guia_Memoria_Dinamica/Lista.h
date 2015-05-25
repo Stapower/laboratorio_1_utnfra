@@ -1,13 +1,13 @@
 /*
- * ListaProductos.h
+ * Lista.h
  *
  *  Created on: 23/5/2015
  *      Author: root
  */
 #include "Producto.h"
 
-#ifndef LISTAPRODUCTOS_H_
-#define LISTAPRODUCTOS_H_
+#ifndef LISTA_H_
+#define LISTA_H_
 
 
 #define INCREMENT_SIZE 5
@@ -22,6 +22,8 @@ typedef struct
 	void (* append)(); // funcion append
 	void* (* get)(); // funcion get
 	void* (* pop)(); // funcion pop
+	void* (* put)(); // funcion put
+
 }list;
 
 
@@ -31,9 +33,10 @@ void* get(list* p_list,int index);
 int resizeUp(list* p_list);
 void* pop(list* p_list,int index);
 void compact(list* p_list);
+int put(list* p_list,int index,void* element);
 
 
 
 
-#endif /* LISTAPRODUCTOS_H_ */
+#endif /* LISTA_H_ */
 

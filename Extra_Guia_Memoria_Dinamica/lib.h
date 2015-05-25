@@ -4,13 +4,14 @@
  *  Created on: 24/4/2015
  *      Author: root
  */
+#include "Lista.h"
 #include "Producto.h"
-#include "ListaProductos.h"
 
 
-void mostrarProductos(int cantidad,Producto* productos[]);
-void ordenarProductos(int cantidad,Producto* productos[]);
+void mostrarProductos(list* pList);
+
+void ordenarProductos(list* pList);
 
 
-void guardarListaEnArchivo(char *nombreArchivo, Producto* productos[],int cantidad);
-void leerListaDesdeArchivo(char *nombreArchivo, Producto* productos[]);
+void guardarListaEnArchivo(char* nombreArchivo, list* pList);
+void leerListaDesdeArchivo(char* nombreArchivo, list* pList);
