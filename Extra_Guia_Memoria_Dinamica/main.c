@@ -25,7 +25,7 @@ int main(void){
 	Dict* pDict;
 
 
-	pDict = newDict(10000);
+	pDict = newDict(10);
 
 	for(i = 0; i<100; i++)
 	{
@@ -37,7 +37,7 @@ int main(void){
 	//pDict->insert(pDict,"olHadao","Mundo 3");
 	//pDict->insert(pDict,"Hola","Mundo 10");
 
-	removeDict(pDict, "Clave 10");
+	pDict->remove(pDict, "Clave 10");
 
 	for(i = 0; i<100; i++)
 	{

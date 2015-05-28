@@ -32,6 +32,7 @@ typedef struct
     Element **table;
 
 	void (* insert)(); // funcion insert Key Value
+	void (* remove)(); // funcion remove from Key
 	void* (* get)(); // funcion get
 
 }Dict;

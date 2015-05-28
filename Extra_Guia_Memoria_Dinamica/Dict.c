@@ -23,7 +23,7 @@ Dict* newDict(int size)
     auxDict->table = malloc(sizeof(Element *) * auxDict->size);
     auxDict->get = getDict;
     auxDict->insert = insertDict;
-
+    auxDict->remove = removeDict;
     for(i = 0; i < auxDict->size; i++)
     	auxDict->table[i] = NULL;
 
