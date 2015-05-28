@@ -31,6 +31,54 @@ Dict* newDict(int size)
 
 }
 
+void removeDict(Dict* d, const char *key)
+{
+    Element* preAuxElement;          /* Este apunta (si existe al anterior) */
+    Element* auxElement;              /* Este apunta al element a eliminar */
+    Element* freeElement;
+    int index;
+
+
+    preAuxElement = NULL;
+
+    index = hash(key,d->size);
+    auxElement = d->table[index];
+
+    while(auxElement != NULL)
+    {
+ 		if(strcmp(auxElement->key, key) == 0)
+ 		{
+
+
+				if(preAuxElement == NULL)
+				{
+
+					d->table[index] = auxElement->next;
+
+					free(auxElement->value);
+					free(auxElement->key);
+					free(auxElement);
+
+				}
+				else
+				{
+					preAuxElement->next = auxElement->next;
+
+					free(auxElement->value);
+					free(auxElement->key);
+					free(auxElement);
+
+				}
+ 		}
+ 		else
+ 		{
+
+ 			preAuxElement = auxElement;
+ 			auxElement = auxElement->next;
+ 		}
+    }
+
+}
 
 unsigned long hash(const char* pText,int maxValue)
 {
@@ -57,18 +105,30 @@ void insertDict(Dict* d, const char *key, const char *value)
     Element *auxElement;
     unsigned long h;
 
-    auxElement = (Element*)malloc(sizeof(Element));
+    auxElement = getElement(d, key);
 
-    auxElement->key = strdup(key);
-    auxElement->value = strdup(value);
+    if(auxElement == NULL)
+    {
 
-    h = hash(key,d->size);
+		auxElement = (Element*)malloc(sizeof(Element));
 
-    auxElement->next = d->table[h];
-    d->table[h] = auxElement;
+		auxElement->key = strdup(key); // copio el contenio en un nuevo str
+		auxElement->value = strdup(value);
 
-    d->n++;
+		h = hash(key,d->size);
 
+		auxElement->next = d->table[h];
+		d->table[h] = auxElement;
+
+		d->n++;
+
+    }
+    else
+    {
+    	free(auxElement->value); //Libero el espacio
+    	auxElement->value = strdup(value);
+
+    }
     /*
 
     if(d->n >= d->size * MAX_LOAD_FACTOR) {
@@ -78,9 +138,10 @@ void insertDict(Dict* d, const char *key, const char *value)
     */
 }
 
-const char* getDict(Dict* d, const char *key)
+//Obtiene un elemento del diccionario
+Element* getElement(Dict* d, const char *key)
 {
-   Element *auxElement;
+   Element* auxElement;
 
    auxElement = d->table[hash(key,d->size)];
 
@@ -88,9 +149,23 @@ const char* getDict(Dict* d, const char *key)
    {
 		if(strcmp(auxElement->key, key) == 0)
 		{
-			return auxElement->value;
+			return auxElement;
 		}
 		auxElement = auxElement->next;
+   }
+   return NULL;
+}
+
+
+const char* getDict(Dict* d, const char *key)
+{
+   Element *auxElement;
+
+   auxElement = getElement(d, key);
+
+   if(auxElement != NULL)
+   {
+	   return auxElement->value;
    }
    return 0;
 }

@@ -19,16 +19,35 @@
 int main(void){
 	int i;
 	char auxStr[20];
+	char auxStr2[20];
 	List* pList;
 	Producto* auxProducto;
 	Dict* pDict;
 
 
-	pDict = newDict(1000);
-	pDict->insert(pDict,"Hola","Mundo 1");
-	pDict->insert(pDict,"olHadao","Mundo 3");
-	printf("Valor del dicc %s\n",pDict->get(pDict,"Hola"));
-	printf("Valor del dicc %s\n",pDict->get(pDict,"olHadao"));
+	pDict = newDict(10000);
+
+	for(i = 0; i<100; i++)
+	{
+		sprintf(auxStr,"Clave %d",i);
+		sprintf(auxStr2,"Valor %d",i);
+		pDict->insert(pDict,auxStr,auxStr);
+	}
+	//pDict->insert(pDict,"Hola","Mundo 1");
+	//pDict->insert(pDict,"olHadao","Mundo 3");
+	//pDict->insert(pDict,"Hola","Mundo 10");
+
+	removeDict(pDict, "Clave 10");
+
+	for(i = 0; i<100; i++)
+	{
+		sprintf(auxStr,"Clave %d",i);
+		printf("Valor del dicc %s\n",pDict->get(pDict,auxStr));
+	}
+
+
+	//printf("Valor del dicc %s\n",pDict->get(pDict,"Clave 14"));
+	//printf("Valor del dicc %s\n",pDict->get(pDict,"Clave 99"));
 
 
 	pList = newList();

@@ -41,6 +41,7 @@ Dict* newDict(int size);
 
 void insertDict(Dict* d, const char *key, const char *value);
 const char * getDict (Dict* d, const char *key);
+Element* getElement(Dict* d, const char *key);
 unsigned long hash(const char* pText,int maxValue);
 
 #endif /* Dict_H_ */
