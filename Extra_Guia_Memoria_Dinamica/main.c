@@ -15,6 +15,10 @@
 #include "Producto.h"
 #include "List.h"
 #include "Dict.h"
+#include <time.h>
+
+
+
 
 int main(void){
 	int i;
@@ -24,32 +28,43 @@ int main(void){
 	Producto* auxProducto;
 	Dict* pDict;
 
+	struct timespec tStart,tStop1,tStop2 ;
 
-	pDict = newDict(10);
+	pDict = newDict(10000);
 
-	for(i = 0; i<100; i++)
+
+	clock_gettime(CLOCK_REALTIME, &tStart);
+
+	for(i = 0; i<10000; i++)
 	{
 		sprintf(auxStr,"Clave %d",i);
 		sprintf(auxStr2,"Valor %d",i);
-		pDict->insert(pDict,auxStr,auxStr);
+		pDict->insert(pDict,auxStr,auxStr2);
 	}
+
+	clock_gettime(CLOCK_REALTIME, &tStop1);
+
+	for(i = 0; i<10000; i++)
+	{
+		sprintf(auxStr,"Clave %d",i);
+		pDict->get(pDict,auxStr);
+		//printf("Valor del dicc %s\n",pDict->get(pDict,auxStr));
+	}
+
+	clock_gettime(CLOCK_REALTIME, &tStop2);
+
+	printf ("TIME ms: Tiempo Insert %ld - Tiempo Get %ld\n", (tStop1.tv_nsec - tStart.tv_nsec)/1000/1000,(tStop2.tv_nsec - tStop1.tv_nsec)/1000/1000 );
+
+
+
+
 	//pDict->insert(pDict,"Hola","Mundo 1");
 	//pDict->insert(pDict,"olHadao","Mundo 3");
 	//pDict->insert(pDict,"Hola","Mundo 10");
 
 	pDict->remove(pDict, "Clave 10");
 
-	for(i = 0; i<100; i++)
-	{
-		sprintf(auxStr,"Clave %d",i);
-		printf("Valor del dicc %s\n",pDict->get(pDict,auxStr));
-	}
-
-
-	//printf("Valor del dicc %s\n",pDict->get(pDict,"Clave 14"));
-	//printf("Valor del dicc %s\n",pDict->get(pDict,"Clave 99"));
-
-
+	/*
 	pList = newList();
 
 	for(i=0;i<30;i++)
@@ -70,6 +85,7 @@ int main(void){
 	auxProducto = pList->pop(pList,12);
 	mostrarProductos(pList);
 
+	*/
 	//auxProducto = pList->pop(pList,15);
 	/*
 	printf("\n--- Resultado ---\n");
