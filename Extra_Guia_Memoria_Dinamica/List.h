@@ -36,9 +36,7 @@ void* pop(List* p_List,int index);
 int put(List* p_List,int index,void* element);
 void push(List* p_List,int index,void* element);
 
-int resizeUp(List* p_List);
-void expand(List* p_List, int index);
-void contract(List* p_List, int index);
+
 
 
 

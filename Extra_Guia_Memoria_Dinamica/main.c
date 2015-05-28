@@ -14,13 +14,21 @@
 #include "lib.h"
 #include "Producto.h"
 #include "List.h"
-
+#include "Dict.h"
 
 int main(void){
 	int i;
 	char auxStr[20];
 	List* pList;
 	Producto* auxProducto;
+	Dict* pDict;
+
+
+	pDict = newDict(1000);
+	pDict->insert(pDict,"Hola","Mundo 1");
+	pDict->insert(pDict,"olHadao","Mundo 3");
+	printf("Valor del dicc %s\n",pDict->get(pDict,"Hola"));
+	printf("Valor del dicc %s\n",pDict->get(pDict,"olHadao"));
 
 
 	pList = newList();
